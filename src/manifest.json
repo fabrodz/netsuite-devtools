@@ -14,7 +14,7 @@
   "background": {
     "service_worker": "service_worker.js"
   },
-  "host_permissions":["*://*.netsuite.com/*"],
+  "host_permissions": ["<all_urls>"],
   "permissions": ["sidePanel", "storage", "activeTab", "scripting", "tabs", "debugger", "declarativeNetRequest"],
   "action": {
     "default_title": "NetSuite DevTools",
