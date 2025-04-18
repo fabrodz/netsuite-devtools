@@ -1,0 +1,25 @@
+{
+  "name": "netsuite-devtools",
+  "version": "1.0.0",
+  "description": " A suite of NetSuite developer tools, accessible from any page in the system.",
+  "main": "index.js",
+  "scripts": {
+    "prettify": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabrodz/netsuite-devtools.git"
+  },
+  "author": "Fabian Rodriguez <fabian@unrealbyte.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fabrodz/netsuite-devtools/issues"
+  },
+  "homepage": "https://github.com/fabrodz/netsuite-devtools#readme",
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.0.3"
+  }
+}

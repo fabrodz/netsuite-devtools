@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "NetSuite DevTools",
+  "description": "SuiteScript Playground and SuiteQL Query Runner for NetSuite.",
+  "author": "Fabian Rodriguez <fabian@unrealbyte.com>",
+  "homepage_url": "https://github.com/fabrodz/netsuite-devtools",
+  "version": "1.0",
+  "icons": {
+    "16": "img/icon16.png",
+    "32": "img/icon32.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png"
+  },
+  "background": {
+    "service_worker": "service_worker.js"
+  },
+  "host_permissions":["*://*.netsuite.com/*"],
+  "permissions": ["sidePanel", "storage", "activeTab", "scripting", "tabs", "debugger", "declarativeNetRequest"],
+  "action": {
+    "default_title": "NetSuite DevTools",
+    "default_icon": "img/icon.png"
+  },
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["inject/suitescript-console.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
