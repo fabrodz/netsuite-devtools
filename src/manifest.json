@@ -11,27 +11,10 @@
     "48": "img/icon48.png",
     "128": "img/icon128.png"
   },
-  "permissions": ["scripting", "activeTab"],
-  "action": {
-    "default_icon": "img/icon128.png"
-  },
   "background": {
     "service_worker": "service_worker.js"
   },
-  "host_permissions": ["*://*.netsuite.com/*"],
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "src/inject/dev-console.js",
-        "libs/codemirror/5.65.13/codemirror.min.js",
-        "libs/codemirror/5.65.13/javascript.min.js",
-        "libs/codemirror/5.65.13/codemirror.min.css",
-        "libs/quickEval.js"
-      ],
-      "matches": ["<all_urls>"]
-    }
-  ],
-  "content_security_policy": {
-    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
-  }
+  "permissions": ["storage"],
+  "devtools_page": "devtools.html",
+  "host_permissions": ["*://*.netsuite.com/*"]
 }

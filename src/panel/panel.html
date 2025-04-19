@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NetSuite Dev Console</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../libs/codemirror/5.65.13/codemirror.min.css">
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <h2>SuiteScript Playground</h2>
+  <div id="quickbar">
+    <button data-snippet="console.log(currentRecord.get());">📄 Current Record</button>
+    <button data-snippet="require('N/search');">🔍 Search</button>
+    <button data-snippet="require('N/record').load({ type: 'salesorder', id: 123 });">🧾 Load Record</button>
+    <button data-snippet="require('N/email').send({ author: 1, recipients: ['user@example.com'], subject: 'Hello', body: 'Test' });">📬 Send Email</button>
+  </div>
+  
+  <textarea id="code">// Try: require('N/currentRecord').get()</textarea>
+  <br>
+  <button id="run">Run</button>
+  <pre id="log"></pre>
+  <script src="../libs/codemirror/5.65.13/codemirror.min.js"></script>
+  <script src="../libs/codemirror/5.65.13/javascript.min.js"></script>
+  <script src="../libs/jsonviewer/index.js"></script>
+  <script src="panel.js"></script>
+</body>
+</html>
