@@ -11,25 +11,27 @@
     "48": "img/icon48.png",
     "128": "img/icon128.png"
   },
+  "permissions": ["scripting", "activeTab"],
+  "action": {
+    "default_icon": "img/icon128.png"
+  },
   "background": {
     "service_worker": "service_worker.js"
   },
-  "host_permissions": ["<all_urls>"],
-  "permissions": ["sidePanel", "storage", "activeTab", "scripting", "tabs", "debugger", "declarativeNetRequest"],
-  "action": {
-    "default_title": "NetSuite DevTools",
-    "default_icon": "img/icon.png"
-  },
-  "side_panel": {
-    "default_path": "panel.html"
-  },
-  "content_security_policy": {
-    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
-  },
+  "host_permissions": ["*://*.netsuite.com/*"],
   "web_accessible_resources": [
     {
-      "resources": ["inject/suitescript-console.js"],
+      "resources": [
+        "src/inject/dev-console.js",
+        "libs/codemirror/5.65.13/codemirror.min.js",
+        "libs/codemirror/5.65.13/javascript.min.js",
+        "libs/codemirror/5.65.13/codemirror.min.css",
+        "libs/quickEval.js"
+      ],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  }
 }
