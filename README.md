@@ -4,8 +4,7 @@
 
 Google Chrome Extension: A suite of NetSuite developer tools, accessible from any page in the system.
 
-![Imagen de WhatsApp 2025-04-19 a las 18 52 03_ea388abf](https://github.com/user-attachments/assets/14cb98e7-669d-44ce-9fcb-2c0268a8b4ae)
-
+![ezgif-4ab177831e3189](https://github.com/user-attachments/assets/490349bb-c8c5-4258-9c28-8ee84a0333b9)
 
 
 ## What's New
@@ -16,7 +15,7 @@ Google Chrome Extension: A suite of NetSuite developer tools, accessible from an
 
 ## Installation
 
-You can download the extension from the [Chrome Webstore]
+You can download the extension from the [Chrome Webstore] (TBA)
 
 ## Usage
 
