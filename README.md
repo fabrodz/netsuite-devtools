@@ -9,15 +9,22 @@ Google Chrome Extension: A suite of NetSuite developer tools, accessible from an
 
 ## What's New
 
+(WIP)
+
 
 ## Features
+
+(WIP)
 
 
 ## Installation
 
 You can download the extension from the [Chrome Webstore] (TBA)
 
+
 ## Usage
+
+(WIP)
 
 
 ## Author
