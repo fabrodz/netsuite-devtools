@@ -1,71 +1,90 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const editor = CodeMirror.fromTextArea(document.getElementById('code'), {
-    mode: 'javascript',
+document.addEventListener("DOMContentLoaded", () => {
+  const editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    mode: "javascript",
     lineNumbers: true,
-    theme: 'default'
+    theme: "default",
   });
 
-  const initCode = `require(['N'], function(N) {
-  for(var n in N){window[n] = N[n];};
-  try{
-      
-  console.log(currentRecord.get())
+  // Expose NetSuite's `N/*` modules on the inspected window so snippets can
+  // call things like `record.load(...)` directly without `require(['N/record'])`.
+  const bootstrapCode = `require(['N'], function (N) {
+    for (var n in N) { window[n] = N[n]; }
+  });`;
 
-  } catch(e){console.error(e.message);}})`;
-
-  chrome.devtools.inspectedWindow.eval(initCode, (result, exceptionInfo) => {
+  chrome.devtools.inspectedWindow.eval(bootstrapCode, (_, exceptionInfo) => {
     if (exceptionInfo && exceptionInfo.value) {
-      console.warn('DevConsole bootstrap error:', exceptionInfo.value);
-    } else {
-      console.log('✅ NetSuite modules exposed to global scope');
+      console.warn("NetSuite DevTools bootstrap error:", exceptionInfo.value);
     }
   });
 
-  document.getElementById('run').addEventListener('click', () => {
+  const logEl = document.getElementById("log");
+
+  const renderResult = (logs, result) => {
+    logEl.innerHTML = "";
+
+    if (logs && logs.length) {
+      const logBlock = document.createElement("pre");
+      logBlock.className = "log-output";
+      logBlock.textContent = logs.map((l) => `📝 ${l}`).join("\n");
+      logEl.appendChild(logBlock);
+    }
+
+    if (typeof result !== "undefined") {
+      const viewer = document.createElement("andypf-json-viewer");
+      viewer.expanded = 2;
+      viewer.indent = 2;
+      viewer.showDataTypes = true;
+      viewer.theme = "monokai";
+      viewer.showToolbar = true;
+      viewer.showSize = true;
+      viewer.showCopy = true;
+      viewer.expandIconType = "square";
+      viewer.data = result;
+      logEl.appendChild(viewer);
+    }
+  };
+
+  const renderError = (message) => {
+    logEl.textContent = `❌ ${message}`;
+  };
+
+  document.getElementById("run").addEventListener("click", () => {
     const code = editor.getValue();
     const wrappedCode = `
-    (() => {
-      const logs = [];
-      const oldLog = console.log;
-      console.log = (...args) => { logs.push(args.map(String).join(' ')); oldLog(...args); };
-      const result = (function() {
-        ${code}
-      })();
-      return { logs, result };
-    })()
+      (() => {
+        const logs = [];
+        const oldLog = console.log;
+        console.log = (...args) => {
+          logs.push(args.map(String).join(' '));
+          oldLog(...args);
+        };
+        try {
+          const result = (function () { ${code} })();
+          return { logs, result };
+        } finally {
+          console.log = oldLog;
+        }
+      })()
     `;
 
-    chrome.devtools.inspectedWindow.eval(wrappedCode, (output, exceptionInfo) => {
-      const log = document.getElementById('log');
-      if (exceptionInfo && exceptionInfo.value) {
-        log.textContent = '❌ ' + exceptionInfo.value;
-      } else {
-        const logs = output.logs || [];
-        const res = output.result;
-        const jsonViewer = document.createElement("andypf-json-viewer")
-        jsonViewer.id = "json"
-        jsonViewer.expanded = 2
-        jsonViewer.indent = 2
-        jsonViewer.showDataTypes = true
-        jsonViewer.theme = "monokai"
-        jsonViewer.showToolbar = true
-        jsonViewer.showSize = true
-        jsonViewer.showCopy = true
-        jsonViewer.expandIconType = "square"
-        jsonViewer.data = res;
-        log.innerHTML = logs.map(l => `📝 ${l}`).join('\n') + `\n✅ Result: ${JSON.stringify(res)}`;
-      }
-    });
+    chrome.devtools.inspectedWindow.eval(
+      wrappedCode,
+      (output, exceptionInfo) => {
+        if (exceptionInfo && exceptionInfo.value) {
+          renderError(exceptionInfo.value);
+          return;
+        }
+        renderResult(output.logs || [], output.result);
+      },
+    );
   });
 
-  document.querySelectorAll('#quickbar button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const snippet = btn.getAttribute('data-snippet');
+  document.querySelectorAll("#quickbar button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const snippet = btn.getAttribute("data-snippet");
       const doc = editor.getDoc();
-      const cursor = doc.getCursor();
-      doc.replaceRange(snippet + '\n', cursor);
+      doc.replaceRange(snippet + "\n", doc.getCursor());
       editor.focus();
     });
   });
-
 });

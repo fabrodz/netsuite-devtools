@@ -1,3 +1,3 @@
 chrome.runtime.onInstalled.addListener(() => {
-  console.log('NetSuite DevTools extension installed');
+  console.log("NetSuite DevTools extension installed");
 });

@@ -5,6 +5,13 @@ body {
   margin: 0;
   padding: 10px;
 }
+
+h2 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
 .CodeMirror {
   height: 200px;
   background: #111;
@@ -12,9 +19,11 @@ body {
   border: 1px solid #444;
   font-size: 13px;
 }
+
 .CodeMirror-cursor {
   border-left: 1px solid white !important;
 }
+
 button {
   background: #007acc;
   color: #fff;
@@ -22,23 +31,39 @@ button {
   border: none;
   margin-top: 10px;
   cursor: pointer;
+  font-family: inherit;
 }
-#log {
-  margin-top: 10px;
-  font-size: 13px;
-  white-space: pre-wrap;
+
+button:hover {
+  background: #1a8fdb;
 }
 
 #quickbar {
   margin-bottom: 10px;
 }
+
 #quickbar button {
   background: #333;
-  color: white;
+  color: #fff;
   border: 1px solid #555;
   padding: 4px 8px;
   margin-right: 6px;
   margin-bottom: 4px;
   font-size: 12px;
   cursor: pointer;
+}
+
+#quickbar button:hover {
+  background: #444;
+}
+
+#log {
+  margin-top: 10px;
+  font-size: 13px;
+  white-space: pre-wrap;
+}
+
+#log .log-output {
+  margin: 0 0 8px;
+  color: #ddd;
 }

@@ -1,10 +1,11 @@
 {
   "name": "netsuite-devtools",
   "version": "1.0.0",
-  "description": " A suite of NetSuite developer tools, accessible from any page in the system.",
-  "main": "index.js",
+  "private": true,
+  "description": "A Chrome DevTools extension providing a SuiteScript playground for NetSuite developers.",
   "scripts": {
-    "prettify": "prettier --write ."
+    "lint": "eslint src",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",

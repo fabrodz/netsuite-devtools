@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
   "name": "NetSuite DevTools",
-  "description": "SuiteScript Playground and SuiteQL Query Runner for NetSuite.",
+  "description": "SuiteScript Playground for NetSuite, available as a Chrome DevTools panel.",
   "author": "Fabian Rodriguez <fabian@unrealbyte.com>",
   "homepage_url": "https://github.com/fabrodz/netsuite-devtools",
-  "version": "1.0",
+  "version": "1.0.0",
   "icons": {
     "16": "img/icon16.png",
     "32": "img/icon32.png",
