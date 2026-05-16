@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "NetSuite DevTools",
   "description": "SuiteScript Playground for NetSuite, available as a Chrome DevTools panel.",
-  "author": "Fabian Rodriguez <fabian@unrealbyte.com>",
+  "author": "Fabian Rodriguez <contact.fabrodz@gmail.com>",
   "homepage_url": "https://github.com/fabrodz/netsuite-devtools",
   "version": "1.0.0",
   "icons": {
